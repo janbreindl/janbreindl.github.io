@@ -56,6 +56,29 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
 .q{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:10px 14px;margin:10px 0}.q p{margin:0 0 8px}
 .opts{display:flex;flex-wrap:wrap;gap:8px}.opts button{background:var(--card);color:var(--ink);border:2px solid var(--line);min-height:44px}
 .opts button.ok,.q.done #chk{background:#1f9d62;color:#fff;border-color:#1f9d62}.opts button.no{background:var(--pink);color:#1b1b2f;border-color:var(--pink)}
+mark.swap{background:var(--yel);color:#1b1b2f;border-radius:6px;padding:0 6px;border-bottom:2px dashed #1b1b2f;font-weight:700}
+.end{color:var(--pink);font-weight:800;border-bottom:3px solid var(--pink)}
+.old{background:rgba(255,61,127,.22);color:var(--ink);border-radius:6px;padding:0 6px;margin-left:1px;font-weight:700}.arr{color:var(--pink);font-weight:800}.big{font-size:1.15rem}
+.ok{color:#1f9d62}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chip{background:var(--card);border:2px solid #1f9d62;border-radius:99px;padding:3px 14px;font-weight:700}
+.role{min-height:120px;border-width:3px}.role h3{font-size:1.4rem}
+button.w{font:inherit;color:inherit;text-align:left;cursor:pointer;width:100%;border-radius:14px}
+button.w:hover{border-color:var(--pink)}button.w:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.tapnote{display:inline-block;background:var(--yel);color:#1b1b2f;border-radius:99px;padding:2px 14px;font-weight:700;font-size:.92rem;margin:0 0 10px}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:20;transform:translateY(110%);transition:transform .25s;padding:0 12px calc(12px + env(safe-area-inset-bottom,0px))}
+#sheet.open{transform:none}
+#sheet .inner{max-width:460px;margin:0 auto;background:var(--card);border:3px solid var(--line);border-radius:22px;box-shadow:0 -6px 30px rgba(0,0,0,.35);overflow:hidden}
+#sheet .pic{height:clamp(170px,38vh,280px);background:var(--yel);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#sheet .pic img{width:100%;height:100%;object-fit:cover;display:block}
+#sheet .pic .big-e{font-size:6rem;line-height:1}
+#sheet .txt{padding:12px 16px 14px;display:flex;align-items:center;gap:10px}
+#sheet .txt div{flex:1}#sheet .txt b{display:block;font:800 1.6rem/1.1 "Bricolage Grotesque","Arial Black",sans-serif}#sheet .txt small{color:var(--soft);font-size:1rem}
+#sheet .txt button{min-width:48px;min-height:48px;border-radius:99px;padding:0 14px}
+#sheet .hint{padding:0 16px 12px;font-size:.85rem;color:var(--soft);margin:0}
+.roleEn{color:var(--soft);font-style:italic;margin:6px 0 0}.flag{display:inline-block;vertical-align:-4px;width:52px;height:34px;border:2px solid var(--line);border-radius:4px;background:linear-gradient(to bottom,#fff 50%,#d7141a 50%);position:relative;overflow:hidden}
+.flag:before{content:"";position:absolute;left:0;top:0;bottom:0;width:55%;background:#11457e;clip-path:polygon(0 0,100% 50%,0 100%)}
+.cult{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;border-top:8px solid #11457e;border-image:linear-gradient(to right,#fff 0 33%,#d7141a 33% 66%,#11457e 66%) 1;padding-top:14px}
+.ci{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px}.ci>span{font-size:2.2rem;line-height:1}
+.pron{background:var(--yel);color:#1b1b2f;border:2px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:14px}
 </style>
 </head>
 <body>
@@ -72,36 +95,43 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
 <section>
   <h2>1. Slovíčka</h2>
   <p class="sub">Řekni nahlas. Které slovo už znáš? <em>(Say them aloud. Which do you already know?)</em></p>
-  <h3>Jídlo</h3>
+  <p class="tapnote">👆 Klikni na slovo: uslyšíš ho a uvidíš obrázek.</p>
+  <h3>Jídlo (12)</h3>
   <div class="grid">
-    <div class="w"><span class="e">🍲</span><b>polévka</b><small>soup</small></div>
-    <div class="w"><span class="e">🥩</span><b>guláš</b><small>goulash</small></div>
-    <div class="w"><span class="e">🍖</span><b>svíčková</b><small>beef in creamy sauce with knedlíky</small></div>
-    <div class="w"><span class="e">🍗</span><b>řízek</b><small>schnitzel</small></div>
-    <div class="w"><span class="e">🍕</span><b>pizza</b><small>pizza</small></div>
-    <div class="w"><span class="e">🍟</span><b>hranolky</b><small>fries</small></div>
-    <div class="w"><span class="e">🥗</span><b>salát</b><small>salad</small></div>
-    <div class="w"><span class="e">🥞</span><b>palačinka</b><small>crêpe</small></div>
-    <div class="w"><span class="e">🍦</span><b>zmrzlina</b><small>ice cream</small></div>
+    <button type="button" class="w" data-say="polévka" data-tr="soup" data-emo="🍲"><span class="e">🍲</span><b>polévka</b><small>soup</small></button>
+    <button type="button" class="w" data-say="guláš" data-tr="goulash" data-emo="🥩"><span class="e">🥩</span><b>guláš</b><small>goulash</small></button>
+    <button type="button" class="w" data-say="svíčková" data-tr="beef in creamy sauce" data-emo="🍖"><span class="e">🍖</span><b>svíčková</b><small>beef in creamy sauce</small></button>
+    <button type="button" class="w" data-say="řízek" data-tr="schnitzel" data-emo="🍗"><span class="e">🍗</span><b>řízek</b><small>schnitzel</small></button>
+    <button type="button" class="w" data-say="pizza" data-tr="pizza" data-emo="🍕"><span class="e">🍕</span><b>pizza</b><small>pizza</small></button>
+    <button type="button" class="w" data-say="hranolky" data-tr="fries" data-emo="🍟"><span class="e">🍟</span><b>hranolky</b><small>fries</small></button>
+    <button type="button" class="w" data-say="salát" data-tr="salad" data-emo="🥗"><span class="e">🥗</span><b>salát</b><small>salad</small></button>
+    <button type="button" class="w" data-say="palačinka" data-tr="crêpe" data-emo="🥞"><span class="e">🥞</span><b>palačinka</b><small>crêpe</small></button>
+    <button type="button" class="w" data-say="zmrzlina" data-tr="ice cream" data-emo="🍦"><span class="e">🍦</span><b>zmrzlina</b><small>ice cream</small></button>
+    <button type="button" class="w" data-say="smažený sýr" data-tr="fried cheese" data-emo="🧀"><span class="e">🧀</span><b>smažený sýr</b><small>fried cheese</small></button>
+    <button type="button" class="w" data-say="kuře s rýží" data-tr="chicken with rice" data-emo="🐔"><span class="e">🐔</span><b>kuře s rýží</b><small>chicken with rice</small></button>
+    <button type="button" class="w" data-say="knedlíky" data-tr="dumplings" data-emo="🥟"><span class="e">🥟</span><b>knedlíky</b><small>dumplings</small></button>
   </div>
-  <h3>Pití</h3>
+  <h3>Pití (10)</h3>
   <div class="grid">
-    <div class="w"><span class="e">💧</span><b>voda</b><small>water</small></div>
-    <div class="w"><span class="e">🥤</span><b>Kofola</b><small>Czech cola</small></div>
-    <div class="w"><span class="e">🥤</span><b>cola</b><small>cola</small></div>
-    <div class="w"><span class="e">🍋</span><b>limonáda</b><small>lemonade</small></div>
-    <div class="w"><span class="e">🧃</span><b>džus</b><small>juice</small></div>
-    <div class="w"><span class="e">☕</span><b>káva</b><small>coffee</small></div>
-    <div class="w"><span class="e">🍵</span><b>čaj</b><small>tea</small></div>
+    <button type="button" class="w" data-say="voda" data-tr="water" data-emo="💧"><span class="e">💧</span><b>voda</b><small>water</small></button>
+    <button type="button" class="w" data-say="minerálka" data-tr="sparkling water" data-emo="💦"><span class="e">💦</span><b>minerálka</b><small>sparkling water</small></button>
+    <button type="button" class="w" data-say="Kofola" data-tr="Czech cola" data-emo="🥤"><span class="e">🥤</span><b>Kofola</b><small>Czech cola</small></button>
+    <button type="button" class="w" data-say="cola" data-tr="cola" data-emo="🥤"><span class="e">🥤</span><b>cola</b><small>cola</small></button>
+    <button type="button" class="w" data-say="limonáda" data-tr="lemonade" data-emo="🍋"><span class="e">🍋</span><b>limonáda</b><small>lemonade</small></button>
+    <button type="button" class="w" data-say="džus" data-tr="juice" data-emo="🧃"><span class="e">🧃</span><b>džus</b><small>juice</small></button>
+    <button type="button" class="w" data-say="káva" data-tr="coffee" data-emo="☕"><span class="e">☕</span><b>káva</b><small>coffee</small></button>
+    <button type="button" class="w" data-say="čaj" data-tr="tea" data-emo="🍵"><span class="e">🍵</span><b>čaj</b><small>tea</small></button>
+    <button type="button" class="w" data-say="mléko" data-tr="milk" data-emo="🥛"><span class="e">🥛</span><b>mléko</b><small>milk</small></button>
+    <button type="button" class="w" data-say="horká čokoláda" data-tr="hot chocolate" data-emo="🍫"><span class="e">🍫</span><b>horká čokoláda</b><small>hot chocolate</small></button>
   </div>
   <h3>Věci v restauraci</h3>
   <div class="grid">
-    <div class="w"><b>jídelní lístek</b><small>menu</small></div>
-    <div class="w"><b>číšník / servírka</b><small>waiter / waitress</small></div>
-    <div class="w"><b>účet</b><small>bill</small></div>
-    <div class="w"><b>dýško</b><small>tip</small></div>
-    <div class="w"><b>stůl pro dva</b><small>table for two</small></div>
-    <div class="w"><b>hotově / kartou</b><small>cash / by card</small></div>
+    <button type="button" class="w" data-say="jídelní lístek" data-tr="menu" data-emo=""><b>jídelní lístek</b><small>menu</small></button>
+    <button type="button" class="w" data-say="číšník / servírka" data-tr="waiter / waitress" data-emo=""><b>číšník / servírka</b><small>waiter / waitress</small></button>
+    <button type="button" class="w" data-say="účet" data-tr="bill" data-emo=""><b>účet</b><small>bill</small></button>
+    <button type="button" class="w" data-say="dýško" data-tr="tip" data-emo=""><b>dýško</b><small>tip</small></button>
+    <button type="button" class="w" data-say="stůl pro dva" data-tr="table for two" data-emo=""><b>stůl pro dva</b><small>table for two</small></button>
+    <button type="button" class="w" data-say="hotově / kartou" data-tr="cash / by card" data-emo=""><b>hotově / kartou</b><small>cash / by card</small></button>
   </div>
 </section>
 
@@ -112,23 +142,28 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
     <div class="cols">
       <div>
         <h3>Jídlo</h3>
-        <div class="row"><span>Polévka dne <em>soup of the day</em></span><span class="p">59 Kč</span></div>
-        <div class="row"><span>Svíčková s knedlíkem</span><span class="p">219 Kč</span></div>
-        <div class="row"><span>Smažený řízek s bramborem</span><span class="p">199 Kč</span></div>
-        <div class="row"><span>Smažený sýr s hranolky <em>vegetarian</em></span><span class="p">169 Kč</span></div>
+        <div class="row"><span>Kulajda <em>creamy potato-dill soup</em></span><span class="p">79 Kč</span></div>
+        <div class="row"><span>Česnečka <em>garlic soup</em></span><span class="p">59 Kč</span></div>
+        <div class="row"><span>Svíčková s knedlíky</span><span class="p">219 Kč</span></div>
+        <div class="row"><span>Smažený řízek s brambory</span><span class="p">199 Kč</span></div>
+        <div class="row"><span>Kuře s rýží</span><span class="p">179 Kč</span></div>
+        <div class="row"><span>Smažený sýr s hranolkami <em>vegetarian</em></span><span class="p">169 Kč</span></div>
         <div class="row"><span>Pizza Margherita <em>vegetarian</em></span><span class="p">149 Kč</span></div>
+        <div class="row"><span>Pizza Quattro formaggi <em>four cheeses</em></span><span class="p">179 Kč</span></div>
         <div class="row"><span>Zeleninový salát <em>vegetarian</em></span><span class="p">109 Kč</span></div>
         <div class="row"><span>Palačinka se zmrzlinou</span><span class="p">99 Kč</span></div>
       </div>
       <div>
         <h3>Pití</h3>
         <div class="row"><span>Voda</span><span class="p">35 Kč</span></div>
+        <div class="row"><span>Minerálka</span><span class="p">45 Kč</span></div>
         <div class="row"><span>Kofola</span><span class="p">45 Kč</span></div>
         <div class="row"><span>Cola</span><span class="p">49 Kč</span></div>
         <div class="row"><span>Domácí limonáda</span><span class="p">65 Kč</span></div>
         <div class="row"><span>Pomerančový džus</span><span class="p">59 Kč</span></div>
         <div class="row"><span>Káva</span><span class="p">55 Kč</span></div>
         <div class="row"><span>Čaj</span><span class="p">49 Kč</span></div>
+        <div class="row"><span>Horká čokoláda</span><span class="p">69 Kč</span></div>
       </div>
     </div>
   </div>
@@ -137,18 +172,18 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>3. Dialog: Objednáváme</h2>
-  <p class="sub">Přečti ve dvojici. Pak vyměň role a změň jídlo!</p>
+  <p class="sub">Přečti ve dvojici. <mark class="swap">Žlutá slova</mark> můžeš měnit: jídlo, pití, způsob placení, cenu. Pak vyměň role!</p>
   <div class="chat">
     <div class="b"><i>číšník</i>Dobrý den! Co si dáte?<small>Hello! What will you have?</small></div>
-    <div class="b me"><i>host</i>Dobrý den. Dám si svíčkovou, prosím.<small>I'll have the svíčková, please.</small></div>
+    <div class="b me"><i>host</i>Dobrý den. Dám si <mark class="swap">svíčkovou</mark>, prosím.<small>I'll have the svíčková, please.</small></div>
     <div class="b"><i>číšník</i>A k pití?<small>And to drink?</small></div>
-    <div class="b me"><i>host</i>Kofolu, prosím.</div>
+    <div class="b me"><i>host</i><mark class="swap">Kofolu</mark>, prosím.</div>
     <div class="b"><i>číšník</i>Tady máte. Dobrou chuť!<small>Here you go. Enjoy!</small></div>
     <div class="b me"><i>host</i>Děkuju! Zaplatím, prosím.<small>Thanks! The bill, please.</small></div>
     <div class="b"><i>číšník</i>Platíte dohromady, nebo zvlášť?<small>Together or separately?</small></div>
-    <div class="b me"><i>host</i>Dohromady. Kartou.</div>
-    <div class="b"><i>číšník</i>To je 264 korun.<small>That's 264 crowns.</small></div>
-    <div class="b me"><i>host</i>Tady máte. Zbytek nechte.<small>Here you go. Keep the change.</small></div>
+    <div class="b me"><i>host</i><mark class="swap">Dohromady</mark>. <mark class="swap">Hotově</mark>.</div>
+    <div class="b"><i>číšník</i>To je <mark class="swap">264 korun</mark>.<small>That's 264 crowns.</small></div>
+    <div class="b me"><i>host</i>Tady máte <mark class="swap">300</mark>. To je dobré.<small>Here’s 300. Keep the change.</small></div>
     <div class="b"><i>číšník</i>Děkuju! Na shledanou!</div>
   </div>
   <div class="tip">💡 <b>Ty nebo vy?</b> Číšník říká hostovi <b>„vy“</b> (Co si dáte?). Kamarádi říkají <b>„ty“</b> (Co si dáš?). Hostům a dospělým říkáme <b>„vy“</b>.</div>
@@ -156,16 +191,15 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
 
 <section>
   <h2>4. Mini gramatika: Dám si + co?</h2>
-  <p class="sub">Po „Dám si“ se mění konec slov na <b>-a</b>. <em>(After “Dám si”, words ending in -a change to -u.)</em></p>
+  <p class="sub">Po „Dám si“ se koncovka <span class="old">-a</span> mění na <span class="end">-u</span> a koncovka <span class="old">-á</span> mění na <span class="end">-ou</span>. <em>(After “Dám si”: -a becomes -u, -á becomes -ou.)</em></p>
   <table>
     <tr><th>to je…</th><th>Dám si…</th></tr>
-    <tr><td>pizza</td><td>Dám si pizz<b>u</b>.</td></tr>
-    <tr><td>polévka</td><td>Dám si polévk<b>u</b>.</td></tr>
-    <tr><td>svíčková</td><td>Dám si svíčkov<b>ou</b>.</td></tr>
-    <tr><td>Kofola</td><td>Dám si Kofol<b>u</b>.</td></tr>
-    <tr><td>limonáda</td><td>Dám si limonád<b>u</b>.</td></tr>
-    <tr><td>guláš, řízek, salát, džus, čaj</td><td>Dám si guláš, řízek, salát… <span class="arrow">(beze změny)</span></td></tr>
+    <tr><td>pizz<span class="old">a</span></td><td class="big">Dám si pizz<span class="end">u</span>.</td></tr><tr><td>polévk<span class="old">a</span></td><td class="big">Dám si polévk<span class="end">u</span>.</td></tr><tr><td>limonád<span class="old">a</span></td><td class="big">Dám si limonád<span class="end">u</span>.</td></tr><tr><td>Kofol<span class="old">a</span></td><td class="big">Dám si Kofol<span class="end">u</span>.</td></tr><tr><td>káv<span class="old">a</span></td><td class="big">Dám si káv<span class="end">u</span>.</td></tr><tr><td>palačink<span class="old">a</span></td><td class="big">Dám si palačink<span class="end">u</span>.</td></tr><tr><td>zmrzlin<span class="old">a</span></td><td class="big">Dám si zmrzlin<span class="end">u</span>.</td></tr><tr><td>col<span class="old">a</span></td><td class="big">Dám si col<span class="end">u</span>.</td></tr><tr><td>svíčkov<span class="old">á</span></td><td class="big">Dám si svíčkov<span class="end">ou</span>.</td></tr>
   </table>
+  <h3>Beze změny <span class="ok">✔</span></h3>
+  <p class="sub">Tato slova se nemění (i v množném čísle: hranolky, palačinky…). <em>(These stay the same.)</em></p>
+  <div class="chips"><span class="chip">guláš</span><span class="chip">řízek</span><span class="chip">salát</span><span class="chip">džus</span><span class="chip">čaj</span><span class="chip">smažený sýr</span><span class="chip">mléko</span><span class="chip">kuře</span><span class="chip">hranolky</span><span class="chip">palačinky</span><span class="chip">knedlíky</span><span class="chip">těstoviny</span></div>
+  <p>Dám si <b>guláš</b>. Dám si <b>řízek</b>. Dám si <b>hranolky</b>. Dám si <b>palačinky</b>.</p>
   <p><b>Další užitečné věty:</b></p>
   <ul>
     <li><b>Chtěl bych…</b> (kluk) / <b>Chtěla bych…</b> (holka): <i>I would like…</i></li>
@@ -189,43 +223,105 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
 <section>
   <h2>6. Cvičení</h2>
   <p class="sub">Klikni na odpověď. Zelená = správně, růžová = zkus znovu.</p>
-  <div id="score" class="score" aria-live="polite">0 / 12</div><h3>A) Vyber správně</h3><div class="q" data-a="dáte"><p>Dobrý den! Co si <span class="blank"></span>? (waiter to guest)</p><div class="opts"><button type="button">dáte</button><button type="button">dám</button><button type="button">dáš</button></div></div><div class="q" data-a="pizzu"><p>Dám si <span class="blank"></span>, prosím. (pizza)</p><div class="opts"><button type="button">pizza</button><button type="button">pizzu</button><button type="button">pizzou</button></div></div><div class="q" data-a="Zaplatím"><p><span class="blank"></span>, prosím. (I'd like to pay.)</p><div class="opts"><button type="button">Zaplatím</button><button type="button">Dobrou chuť</button><button type="button">Děkuju</button></div></div><div class="q" data-a="chuť"><p>Dobrou <span class="blank"></span>! (Enjoy your meal!)</p><div class="opts"><button type="button">chuť</button><button type="button">den</button><button type="button">noc</button></div></div><div class="q" data-a="zvlášť"><p>Platíte dohromady, nebo <span class="blank"></span>?</p><div class="opts"><button type="button">zvlášť</button><button type="button">hotově</button><button type="button">kartou</button></div></div><div class="q" data-a="limonádu"><p>Dám si <span class="blank"></span>. (limonáda)</p><div class="opts"><button type="button">limonáda</button><button type="button">limonádu</button><button type="button">limonádě</button></div></div><h3>B) Co to znamená?</h3><div class="q" data-a="bill"><p>účet =</p><div class="opts"><button type="button">bill</button><button type="button">tip</button><button type="button">fries</button></div></div><div class="q" data-a="tip"><p>dýško =</p><div class="opts"><button type="button">waiter</button><button type="button">tip</button><button type="button">menu</button></div></div><div class="q" data-a="fries"><p>hranolky =</p><div class="opts"><button type="button">fries</button><button type="button">salad</button><button type="button">soup</button></div></div><div class="q" data-a="waiter"><p>číšník =</p><div class="opts"><button type="button">waiter</button><button type="button">bill</button><button type="button">cook</button></div></div><div class="q" data-a="ice cream"><p>zmrzlina =</p><div class="opts"><button type="button">ice cream</button><button type="button">juice</button><button type="button">pancake</button></div></div><h3>C) Kolik to stojí?</h3><div class="q" data-num="244"><p>Řízek (199 Kč) + Kofola (45 Kč) = <input id="num" type="number" inputmode="numeric" style="width:5em;font:inherit;padding:4px 8px;border:2px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)"> Kč <button type="button" id="chk">Zkontrolovat</button></p></div><h3>D) Role-play: vyber kartu</h3>
-  <div class="cards">
-    <div class="card"><h3>🌱 Jsi vegetarián/ka</h3>Zeptej se, co je bez masa. Objednej jídlo a pití.</div>
-    <div class="card"><h3>💸 Máš jen 150 Kč</h3>Vyber z lístku jídlo a pití, které se vejdou do rozpočtu. Řekni číšníkovi, co si dáš.</div>
-    <div class="card"><h3>👯 Jdeš se 3 kamarády</h3>Každý si objedná něco jiného. Nakonec: „Platíme zvlášť!“</div>
-  </div>
-  <h3>E) Domácí výzva 🎬</h3>
-  <p>Natoč 30sekundové video: objednáváš ve svém oblíbeném fiktivním bistru. Použij aspoň <b>3 jídla/pití</b>, <b>Dám si…</b> a <b>Dobrou chuť!</b></p>
+  <div id="score" class="score" aria-live="polite">0 / 11</div><h3>A) Vyber správně</h3><div class="q" data-a="dáte"><p>Dobrý den! Co si <span class="blank"></span>? (waiter to guest)</p><div class="opts"><button type="button">dáte</button><button type="button">dám</button><button type="button">dáš</button></div></div><div class="q" data-a="pizzu"><p>Dám si <span class="blank"></span>, prosím. (pizza)</p><div class="opts"><button type="button">pizza</button><button type="button">pizzu</button><button type="button">pizzou</button></div></div><div class="q" data-a="Zaplatím"><p><span class="blank"></span>, prosím. (I'd like to pay.)</p><div class="opts"><button type="button">Zaplatím</button><button type="button">Dobrou chuť</button><button type="button">Děkuju</button></div></div><div class="q" data-a="chuť"><p>Dobrou <span class="blank"></span>! (Enjoy your meal!)</p><div class="opts"><button type="button">chuť</button><button type="button">den</button><button type="button">noc</button></div></div><div class="q" data-a="zvlášť"><p>Platíte dohromady, nebo <span class="blank"></span>?</p><div class="opts"><button type="button">zvlášť</button><button type="button">hotově</button><button type="button">kartou</button></div></div><div class="q" data-a="limonádu"><p>Dám si <span class="blank"></span>. (limonáda)</p><div class="opts"><button type="button">limonáda</button><button type="button">limonádu</button><button type="button">limonádě</button></div></div><h3>B) Co to znamená?</h3><div class="q" data-a="bill"><p>účet =</p><div class="opts"><button type="button">bill</button><button type="button">tip</button><button type="button">fries</button></div></div><div class="q" data-a="tip"><p>dýško =</p><div class="opts"><button type="button">waiter</button><button type="button">tip</button><button type="button">menu</button></div></div><div class="q" data-a="fries"><p>hranolky =</p><div class="opts"><button type="button">fries</button><button type="button">salad</button><button type="button">soup</button></div></div><div class="q" data-a="waiter"><p>číšník =</p><div class="opts"><button type="button">waiter</button><button type="button">bill</button><button type="button">cook</button></div></div><div class="q" data-a="ice cream"><p>zmrzlina =</p><div class="opts"><button type="button">ice cream</button><button type="button">juice</button><button type="button">pancake</button></div></div><h3>C) Role-play: vylosuj si kartu</h3>
+  <div id="role" class="card role" aria-live="polite"><h3>🎲 Zmáčkni tlačítko</h3><p>Dostaneš náhodnou roli. Zahrajte si scénku ve dvojici.</p></div>
+  <p><button id="nextRole" type="button">🎲 Vylosovat kartu</button></p>
 </section>
 
 <section>
-  <h2>7. Kulturní minuta 🇨🇿</h2>
-  <ul>
-    <li><b>Dýško:</b> v Česku dáváš cca 10 %. Stačí říct „Zbytek nechte“ nebo zaokrouhlit.</li>
-    <li><b>Hospoda:</b> tradiční česká restaurace. Často se sdílí stůl s cizími lidmi. Zeptej se: „Je tu volno?“ <i>(Is this seat free?)</i></li>
-    <li><b>Kofola:</b> česká odpověď na colu. Někdo ji miluje, někdo ne. Ochutnej a rozhodni!</li>
-    <li><b>Polévka první:</b> polední menu často začíná polévkou. Je levnější než à la carte.</li>
-  </ul>
-  <p><b>Výslovnost:</b> zkus říct <b>řízek</b>, <b>třicet tři</b>, <b>Dobrou chuť</b>. <i>(The Czech ř is famously hard. Don't worry, even Czech kids practice it!)</i></p>
+  <h2><span class="flag" aria-hidden="true"></span> 7. Kulturní minuta</h2>
+  <div class="cult">
+    <div class="ci"><span>💰</span><div><b>Dýško</b><br>Dáš asi 10 %. Řekni: <mark class="swap">„To je dobré.“</mark><br><i>Keep the change.</i></div></div>
+    <div class="ci"><span>🍺</span><div><b>Hospoda</b><br>Česká restaurace. Zeptej se: „Je tu volno?“<br><i>Is this seat free?</i></div></div>
+    <div class="ci"><span>🥤</span><div><b>Kofola</b><br>Česká cola. Ochutnej!<br><i>Try it!</i></div></div>
+    <div class="ci"><span>🍲</span><div><b>Polední menu</b><br>Je levnější. Začíná polévkou.<br><i>Lunch menu: cheaper, starts with soup.</i></div></div>
+  </div>
+  <p class="pron">🗣️ <b>Výslovnost:</b> řízek · třicet tři · Dobrou chuť · kuře s rýží<br><i>Czech ř is hard. Even Czechs practice it! 😄</i></p>
 </section>
 
 <footer>Čeština pro začátečníky A1 · téma: v restauraci</footer>
 </main>
 
+<div id="sheet" role="dialog" aria-label="Slovíčko" aria-hidden="true">
+  <div class="inner">
+    <div class="pic" id="pic"></div>
+    <div class="txt"><div><b id="shW"></b><small id="shT"></small></div>
+      <button type="button" id="shPlay" aria-label="Přehrát znovu">🔊</button>
+      <button type="button" id="shClose" aria-label="Zavřít">✕</button></div>
+    <p class="hint" id="shHint"></p>
+  </div>
+</div>
 <script>
 (function(){
-  var food=[["pizzu","pizza"],["polévku","soup"],["svíčkovou","svíčková"],["řízek","schnitzel"],["hranolky","fries"],["salát","salad"],["palačinku","crêpe"],["zmrzlinu","ice cream"],["guláš","goulash"]];
-  var drink=[["Kofolu","Kofola"],["colu","cola"],["limonádu","lemonade"],["džus","juice"],["vodu","water"],["čaj","tea"],["kávu","coffee"]];
+  var meals={
+    soup:[["polévku","soup"]],
+    main:[["svíčkovou","svíčková"],["řízek","schnitzel"],["guláš","goulash"],["kuře s rýží","chicken with rice"],["smažený sýr","fried cheese"],["pizzu","pizza"],["salát","salad"]],
+    mainSide:[[["řízek","schnitzel"],["hranolky","fries"]],[["smažený sýr","fried cheese"],["hranolky","fries"]],[["svíčkovou","svíčková"],["knedlíky","dumplings"]],[["guláš","goulash"],["knedlíky","dumplings"]]],
+    dessert:[["palačinku","a crêpe"],["zmrzlinu","ice cream"]],
+    drink:[["Kofolu","Kofola"],["colu","cola"],["limonádu","lemonade"],["džus","juice"],["vodu","water"],["čaj","tea"],["kávu","coffee"],["minerálku","sparkling water"],["mléko","milk"],["horkou čokoládu","hot chocolate"]]
+  };
+  var border=[["pivo s colou","beer with cola"],["svíčkovou s rýží","svíčková with rice"],["smažený sýr a horkou čokoládu","fried cheese and hot chocolate"],["guláš a zelený čaj","goulash and green tea"],["řízek s rýží","schnitzel with rice"],["pizzu s ananasem a colu","pizza with pineapple and cola"],["hranolky a horkou čokoládu","fries and hot chocolate"],["salát a mléko","salad and milk"],["polévku a zmrzlinu","soup and ice cream"],["kuře s rýží a zelený čaj","chicken with rice and green tea"],["zmrzlinu a kávu","ice cream and coffee"],["knedlíky a limonádu","dumplings and lemonade"]];
+  var crazy=[["zmrzlinu s kečupem","ice cream with ketchup"],["palačinku s hořčicí a colu","a crêpe with mustard and cola"],["guláš s marmeládou","goulash with jam"],["džus s cibulí","juice with onion"],["polévku s cukrem a kávu","soup with sugar and coffee"]];
   var out=document.getElementById("out"),en=document.getElementById("en"),go=document.getElementById("go");
   function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  function joinL(a,and){return a.length===1?a[0]:a.slice(0,-1).join(", ")+" "+and+" "+a[a.length-1];}
+  function serious(){
+    var t=Math.random(),items;
+    if(t<0.35)items=[pick(meals.main),pick(meals.drink)];
+    else if(t<0.55)items=[pick(meals.soup),pick(meals.main.slice(0,5)),pick(meals.drink)];
+    else if(t<0.85)items=pick(meals.mainSide).concat([pick(meals.drink)]);
+    else items=[pick(meals.dessert),pick(meals.drink)];
+    return [joinL(items.map(function(x){return x[0];}),"a"),joinL(items.map(function(x){return x[1];}),"and")];
+  }
   go.addEventListener("click",function(){
-    var f=pick(food),d=pick(drink);
-    out.textContent="Dám si "+f[0]+" a "+d[0]+".";
-    en.textContent="I'll have "+f[1]+" and "+d[1]+".";
+    var r=Math.random(),c;
+    if(r<0.10)c=pick(crazy);else if(r<0.40)c=pick(border);else c=serious();
+    out.textContent="Dám si "+c[0]+".";
+    en.textContent="I'll have "+c[1]+".";
   });
 
-  var total=12,got=0,sc=document.getElementById("score");
+  /* ---- slovíčka: zvuk + obrázek ---- */
+  var voices=[];
+  function loadVoices(){if(window.speechSynthesis){voices=speechSynthesis.getVoices();}}
+  loadVoices();if(window.speechSynthesis){speechSynthesis.onvoiceschanged=loadVoices;}
+  function czVoice(){
+    var cz=voices.filter(function(v){return /^cs([-_]|$)/i.test(v.lang);});
+    if(!cz.length)return null;
+    var f=cz.filter(function(v){return /zuzana|vlasta|iveta|google|female|žen/i.test(v.name);});
+    return (f[0]||cz[0]);
+  }
+  function say(t){
+    var ok=false;
+    if(window.speechSynthesis&&window.SpeechSynthesisUtterance){
+      speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(t);u.lang="cs-CZ";u.rate=0.85;
+      var v=czVoice();if(v){u.voice=v;ok=true;}
+      speechSynthesis.speak(u);
+    }
+    return ok;
+  }
+  function slug(t){return t.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");}
+  var sheet=document.getElementById("sheet"),pic=document.getElementById("pic"),cur="";
+  function openWord(b){
+    cur=b.dataset.say;
+    document.getElementById("shW").textContent=cur;
+    document.getElementById("shT").textContent=b.dataset.tr;
+    var emo=b.dataset.emo||"🍽️";
+    pic.innerHTML="";
+    var big=document.createElement("span");big.className="big-e";big.textContent=emo;pic.appendChild(big);
+    var img=new Image();img.alt=cur;
+    img.onload=function(){pic.innerHTML="";pic.appendChild(img);};
+    img.src="foto/"+slug(cur)+".jpg";
+    sheet.classList.add("open");sheet.setAttribute("aria-hidden","false");
+    var ok=say(cur);
+    document.getElementById("shHint").textContent=ok?"":"Tento telefon nemá český hlas. Zvuk může znít anglicky.";
+  }
+  document.querySelectorAll("button.w").forEach(function(b){b.addEventListener("click",function(){openWord(b);});});
+  document.getElementById("shPlay").addEventListener("click",function(){say(cur);});
+  function closeSheet(){sheet.classList.remove("open");sheet.setAttribute("aria-hidden","true");if(window.speechSynthesis)speechSynthesis.cancel();}
+  document.getElementById("shClose").addEventListener("click",closeSheet);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSheet();});
+  var total=11,got=0,sc=document.getElementById("score");
   function upd(){sc.textContent=got+" / "+total+(got===total?" 🎉 Výborně!":"");}
   document.querySelectorAll(".q[data-a]").forEach(function(qq){
     qq.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
@@ -234,11 +330,12 @@ footer{margin-top:50px;color:var(--soft);font-size:.9rem}
       else{b.className="no";}
     });});
   });
-  var nq=document.querySelector(".q[data-num]"),chk=document.getElementById("chk"),inp=document.getElementById("num");
-  chk.addEventListener("click",function(){
-    if(nq.classList.contains("done"))return;
-    if(inp.value==nq.dataset.num){nq.classList.add("done");chk.textContent="✅ Správně!";got++;upd();}
-    else{chk.textContent="❌ Zkus to znovu";}
+  var roles=[["🌱", "Jsi vegetarián/ka", "Řekni číšníkovi, že jsi vegetarián/ka, a zeptej se, co je na lístku bez masa. Pak objednej jídlo a pití.", "Vegetarian. Ask what has no meat."], ["💸", "Máš jen 150 Kč", "Řekni číšníkovi, že máš jen 150 korun. Vyber z lístku jídlo a pití, které se za tu cenu vejdou, a objednej je.", "Only 150 CZK. Choose food + drink."], ["👯", "Jdeš se 3 kamarády", "Každý si objedná něco jiného. Na konci řekněte číšníkovi, že budete platit zvlášť.", "4 friends. Ask to pay separately."], ["🎂", "Máš narozeniny", "Řekni číšníkovi, že máš dnes narozeniny, a objednej dezert a pití pro sebe a pro kamaráda.", "Your birthday. Order dessert + drinks."], ["😬", "Špatné jídlo", "Číšník přinesl jiné jídlo, než sis objednal/a. Řekni mu, že sis objednal/a něco jiného, a objednej správné jídlo.", "Wrong dish arrived. Order the right one."], ["🤷", "Nevíš, co si dát", "Zeptej se číšníka, co doporučuje. Vyber si z jeho návrhů a objednej.", "Can't decide. Ask for a recommendation."], ["🪑", "Nemáš rezervaci", "Zeptej se číšníka, jestli mají volný stůl pro dva. Pak si sedni a objednej pití.", "No reservation. Ask for a table."], ["💳", "Nefunguje ti karta", "Řekni číšníkovi, že ti nefunguje karta, a zeptej se, jestli můžeš platit hotově.", "Card doesn't work. Ask to pay cash."], ["🧅", "Bez cibule", "Řekni číšníkovi, že nechceš cibuli, a objednej jídlo bez ní.", "No onion, please."], ["🧑‍🍳", "Ty jsi číšník/servírka", "Kamarád je host. Zeptej se ho, co si dá a co chce k pití. Na konci mu řekni cenu.", "You're the waiter. Take the order, say the price."]],last=-1,box=document.getElementById("role");
+  document.getElementById("nextRole").addEventListener("click",function(){
+    var i;do{i=Math.floor(Math.random()*roles.length);}while(i===last&&roles.length>1);
+    last=i;var r=roles[i];
+    box.innerHTML="";var h=document.createElement("h3"),p=document.createElement("p");
+    h.textContent=r[0]+" "+r[1];p.textContent=r[2];box.appendChild(h);box.appendChild(p);var q=document.createElement("p");q.className="roleEn";q.textContent="🇬🇧 "+r[3];box.appendChild(q);
   });
 })();
 </script>
